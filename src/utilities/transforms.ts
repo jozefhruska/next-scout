@@ -15,7 +15,7 @@ export const transformKeyName = (keyName: string): string => {
 
 export const generateArguments = (
   args: string[],
-  withTypes: boolean = true
+  withTypes = true
 ): string =>
   args.reduce(
     (p, c, i) =>

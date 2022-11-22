@@ -24,7 +24,7 @@ export const generateRouteBuilderType = (
 const generateRouteBuilderTypeBody = (
   node: DirectoryTreeNode,
   args: string[] = [],
-  depth: number = 1
+  depth = 1
 ): string => {
   let acc = '';
 
@@ -85,8 +85,8 @@ export const generateRouteBuilder = (
 const generateRouteBuilderBody = (
   node: DirectoryTreeNode,
   args: string[] = [],
-  base: string = '/',
-  depth: number = 1
+  base = '/',
+  depth = 1
 ): string => {
   let acc = '';
 
