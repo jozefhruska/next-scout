@@ -1,10 +1,10 @@
 {
   "name": "next-scout",
   "version": "0.0.1",
-  "description": "",
-  "license": "ISC",
+  "description": "Simple route builder generator for Next.js",
+  "license": "MIT",
   "type": "module",
-  "author": "",
+  "author": "Jozef Hruška <me@jozefhruska.com>",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": "./dist/index.js",
@@ -12,7 +12,8 @@
     "next",
     "nextjs",
     "route",
-    "builder"
+    "builder",
+    "typescript"
   ],
   "scripts": {
     "build": "tsc && ./scripts/build.js",
@@ -37,6 +38,8 @@
     "yargs-parser": "~21.1.1"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "~6.0.1",
+    "@semantic-release/git": "~10.0.1",
     "@types/node": "~18.11.5",
     "@types/yargs-parser": "~21.0.0",
     "@typescript-eslint/eslint-plugin": "~5.41.0",
