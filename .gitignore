@@ -1,0 +1,9 @@
+# Development
+node_modules
+.idea
+
+# Build
+dist
+
+# Misc
+.DS_Store
