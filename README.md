@@ -4,7 +4,7 @@
 
 [![npm version](https://badge.fury.io/js/next-scout.svg)](https://badge.fury.io/js/next-scout)
 
-> **Info**  
+> **Note**  
 > Supports both the new `app` directory (Next.js 13+) as well as the “legacy” `pages` directory.
 
 ## What is a route builder?
