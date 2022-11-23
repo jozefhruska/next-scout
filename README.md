@@ -2,10 +2,10 @@
 
 `next-scout` is a simple tool (command) that allows you to generate a **strictly typed** route builder for Next.js applications.
 
-[![npm version](https://badge.fury.io/js/next-scout.svg)](https://badge.fury.io/js/next-scout)
-
 > **Note**  
 > Supports both the new `app` directory (Next.js 13+) as well as the “legacy” `pages` directory.
+
+[![npm version](https://badge.fury.io/js/next-scout.svg)](https://badge.fury.io/js/next-scout)
 
 ## What is a route builder?
 
