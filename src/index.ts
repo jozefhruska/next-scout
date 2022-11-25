@@ -58,8 +58,8 @@ try {
     (error) => {
       if (error) {
         console.error(
+          chalk.bgRedBright.whiteBright(' ERROR '),
           chalk.redBright(
-            chalk.bgRedBright(chalk.whiteBright(' ERROR ')),
             'Unable to write the output file',
             chalk.bold(argv.output) + '.'
           )
@@ -67,7 +67,7 @@ try {
         console.error(error);
       } else {
         console.log(
-          chalk.bgGray(chalk.whiteBright(' INFO ')),
+          chalk.bgGreen.whiteBright(' SUCCESS '),
           chalk.white(
             'The route builder has been successfully exported to'
           ),
@@ -79,7 +79,7 @@ try {
 } catch (error) {
   console.error(
     chalk.redBright(
-      chalk.bgRedBright(chalk.whiteBright(' ERROR ')),
+      chalk.bgRedBright.whiteBright(' ERROR '),
       'Unable to build the route builder.'
     )
   );

@@ -6,7 +6,13 @@ import {
 import { isAuxiliaryNode, isPage } from './checks';
 import { readdirSync } from 'node:fs';
 import { parse, resolve } from 'node:path';
-import { INDEX_FILE_NAME_REGEX } from '../constants';
+import {
+  DEFAULT_APP_FOLDER_PATH,
+  DEFAULT_PAGES_FOLDER_PATH,
+  INDEX_FILE_NAME_REGEX,
+} from '../constants';
+import { Dirent } from 'fs';
+import chalk from 'chalk';
 
 /**
  * Determines the route tree node type from the node name.
@@ -39,9 +45,24 @@ export const buildRouteTree = (
   path: string,
   routeFolderType: RouteFolderType
 ): RouteTreeNode => {
-  const dirents = readdirSync(path, {
-    withFileTypes: true,
-  });
+  let dirents: Dirent[] = [];
+
+  try {
+    dirents = readdirSync(path, {
+      withFileTypes: true,
+    });
+  } catch (error) {
+    console.log(
+      chalk.bgGray.whiteBright(' INFO '),
+      chalk.white('No routes found in'),
+      chalk.bold(
+        routeFolderType === RouteFolderType.App
+          ? DEFAULT_APP_FOLDER_PATH
+          : DEFAULT_PAGES_FOLDER_PATH
+      ),
+      chalk.white("(directory doesn't exist or is inaccessible).")
+    );
+  }
 
   const baseName = parse(path).name;
 
