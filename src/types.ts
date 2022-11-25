@@ -1,10 +1,24 @@
-export type DirectoryTreeNode = {
+export enum RouteTreeNodeType {
+  Static,
+  Dynamic,
+  DynamicCatchAll,
+  DynamicCatchAllOptional,
+  RouteGroup,
+}
+
+export type RouteTreeNode = {
   name: string;
+  type: RouteTreeNodeType;
   page: boolean;
-  children: DirectoryTreeNode[];
+  children: RouteTreeNode[];
 };
 
 export enum RouteFolderType {
   App,
   Pages,
+}
+
+export enum ParamType {
+  String,
+  Array,
 }
