@@ -9,6 +9,8 @@ import { parse, resolve } from 'node:path';
 import {
   DEFAULT_APP_FOLDER_PATH,
   DEFAULT_PAGES_FOLDER_PATH,
+  EXCLUDED_FILES,
+  EXCLUDED_FOLDERS,
   INDEX_FILE_NAME_REGEX,
 } from '../constants';
 import { Dirent } from 'fs';
@@ -66,10 +68,18 @@ export const buildRouteTree = (
 
   const baseName = parse(path).name;
 
+  // Check if the current folder is an auxiliary (helper)
+  // Used to check for excluded files/folders (i.e. _document.*)
+  const isAuxNode = isAuxiliaryNode(baseName);
+
   const children: RouteTreeNode[] = [];
 
   for (const dirent of dirents) {
     if (dirent.isDirectory()) {
+      if (isAuxNode && EXCLUDED_FOLDERS.includes(dirent.name)) {
+        continue;
+      }
+
       children.push(
         buildRouteTree(resolve(path, dirent.name), routeFolderType)
       );
@@ -78,8 +88,14 @@ export const buildRouteTree = (
       routeFolderType === RouteFolderType.Pages &&
       !INDEX_FILE_NAME_REGEX.test(dirent.name)
     ) {
+      const fileBaseName = parse(resolve(path, dirent.name)).name;
+
+      if (isAuxNode && EXCLUDED_FILES.includes(fileBaseName)) {
+        continue;
+      }
+
       children.push({
-        name: parse(resolve(path, dirent.name)).name,
+        name: fileBaseName,
         type: getRouteTreeNodeType(dirent.name),
         page: true,
         children: [],
