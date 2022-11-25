@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/jozefhruska/next-scout/compare/v1.1.0...v1.1.1) (2022-11-25)
+
+
+### Bug Fixes
+
+* error on inaccessible folders ([#5](https://github.com/jozefhruska/next-scout/issues/5)) ([6996040](https://github.com/jozefhruska/next-scout/commit/6996040a7d36f76660b42d396cfcacc10a626980))
+
 # [1.1.0](https://github.com/jozefhruska/next-scout/compare/v1.0.0...v1.1.0) (2022-11-25)
 
 
