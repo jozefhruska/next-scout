@@ -4,6 +4,7 @@ import {
   PAGE_FILE_NAME_REGEX,
   ROOT_NODE_NAME,
 } from '../constants';
+import { RouteTreeNode, RouteTreeNodeType } from '../types';
 
 export const isPage = (dirents: Dirent[]): boolean =>
   !!dirents.length &&
@@ -13,11 +14,17 @@ export const isPage = (dirents: Dirent[]): boolean =>
       d.name.match(INDEX_FILE_NAME_REGEX)
   );
 
-export const isRouteGroup = (dirName: string): boolean =>
-  dirName.includes('(');
+export const isRouteGroup = (node: RouteTreeNode): boolean =>
+  node.type === RouteTreeNodeType.RouteGroup;
 
-export const isDynamicRoute = (dirName: string): boolean =>
-  dirName.includes('[');
+export const isDynamicRoute = (node: RouteTreeNode): boolean =>
+  node.type === RouteTreeNodeType.Dynamic ||
+  node.type === RouteTreeNodeType.DynamicCatchAll ||
+  node.type === RouteTreeNodeType.DynamicCatchAllOptional;
+
+export const isCatchAllRoute = (node: RouteTreeNode): boolean =>
+  node.type === RouteTreeNodeType.DynamicCatchAll ||
+  node.type === RouteTreeNodeType.DynamicCatchAllOptional;
 
 export const isAuxiliaryNode = (nodeName: string): boolean =>
   [ROOT_NODE_NAME, 'app', 'pages'].includes(nodeName);

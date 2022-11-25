@@ -1,64 +1,70 @@
-import { DIRECTORY_NAME_REGEX } from '../constants';
-import { DirectoryTreeNode } from '../types';
-import { isDynamicRoute, isRouteGroup } from './checks';
+import { RouteTreeNode } from '../types';
+import {
+  isAuxiliaryNode,
+  isCatchAllRoute,
+  isDynamicRoute,
+  isRouteGroup,
+} from './checks';
 
-export const sanitizeKeyName = (keyName: string): string => {
-  const [keyNameBase] = keyName.split('.');
-  return keyNameBase.replace(DIRECTORY_NAME_REGEX, '');
+/**
+ * Removes all "unnecessary" characters. For example, symbols Next.js uses to
+ * differentiate between static/dynamic pages.
+ *
+ * @param nodeName Route tree node name (directory or file name)
+ */
+export const sanitizeNodeName = (nodeName: string): string => {
+  return nodeName.replace(/[^\w\s-]/gi, '');
 };
 
-export const transformKeyName = (keyName: string): string => {
-  const sanitized = sanitizeKeyName(keyName);
+/**
+ * Transforms a route tree node name to a camel-case, extension-less version.
+ * Route tree names can be folder or file names. We have to transform these
+ * names, so they can be used as object keys.
+ *
+ * @param nodeName Route tree node name (directory or file name)
+ */
+export const getKeyName = (nodeName: string): string => {
+  const cleanName = sanitizeNodeName(nodeName);
 
-  return sanitized.includes('-') ? `'${sanitized}'` : sanitized;
+  if (!/[-_]/g.test(nodeName)) {
+    return cleanName;
+  }
+
+  // Convert to camelCase
+  // Courtesy of Abbos (https://stackoverflow.com/a/61375162)
+  return cleanName
+    .toLowerCase()
+    .replace(/([-_][a-z])/g, (group) =>
+      group.toUpperCase().replace('-', '').replace('_', '')
+    );
 };
 
-export const generateArguments = (
-  args: string[],
-  withTypes = true
-): string =>
-  args.reduce(
-    (p, c, i) =>
-      p +
-      c +
-      (withTypes ? ': string' : '') +
-      (i !== args.length - 1 ? ', ' : ''),
-    ''
-  );
-
-export const getPagePath = (
-  base: string,
-  node: DirectoryTreeNode
-): string => {
-  if (node.name === 'app') {
+export const getPagePath = (base: string, node: RouteTreeNode): string => {
+  if (node.name === 'app' || node.name === 'pages') {
     return '/';
   }
 
-  if (isDynamicRoute(node.name)) {
-    return base + `/\${${sanitizeKeyName(node.name)}}`;
+  if (isDynamicRoute(node)) {
+    if (isCatchAllRoute(node)) {
+      return base + `/\${${sanitizeNodeName(node.name)}.join('/')}`;
+    } else {
+      return base + `/\${${sanitizeNodeName(node.name)}}`;
+    }
   }
 
-  return (base === '/' ? '' : base) + `/${sanitizeKeyName(node.name)}`;
+  return (base === '/' ? '' : base) + `/${sanitizeNodeName(node.name)}`;
 };
 
-export const updateBase = (
-  base: string,
-  node: DirectoryTreeNode
-): string => {
-  if (node.name === 'app' || isRouteGroup(node.name)) {
+export const updateBase = (base: string, node: RouteTreeNode): string => {
+  if (isAuxiliaryNode(node.name) || isRouteGroup(node)) {
     return base;
   }
 
-  if (isDynamicRoute(node.name)) {
+  if (isDynamicRoute(node)) {
     return (
-      (base === '/' ? '' : base) + `/\${${sanitizeKeyName(node.name)}}`
+      (base === '/' ? '' : base) + `/\${${sanitizeNodeName(node.name)}}`
     );
   }
 
-  return (base === '/' ? '' : base) + `/${sanitizeKeyName(node.name)}`;
+  return (base === '/' ? '' : base) + `/${sanitizeNodeName(node.name)}`;
 };
-
-export const getIndent = (depth: number) =>
-  Array(depth * 2)
-    .fill(' ')
-    .join('');
