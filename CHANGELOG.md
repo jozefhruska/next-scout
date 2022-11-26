@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/jozefhruska/next-scout/compare/v1.1.1...v1.1.2) (2022-11-26)
+
+
+### Bug Fixes
+
+* exclude certain files and folders ([#8](https://github.com/jozefhruska/next-scout/issues/8)) ([f13f081](https://github.com/jozefhruska/next-scout/commit/f13f081fdd835e40a06536b5413934533cd07cc6))
+
 ## [1.1.1](https://github.com/jozefhruska/next-scout/compare/v1.1.0...v1.1.1) (2022-11-25)
 
 
