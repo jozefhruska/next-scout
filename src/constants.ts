@@ -5,3 +5,6 @@ export const ROOT_NODE_NAME = 'ROOT';
 
 export const DEFAULT_APP_FOLDER_PATH = './app/';
 export const DEFAULT_PAGES_FOLDER_PATH = './pages/';
+
+export const EXCLUDED_FILES = ['_app', '_document'];
+export const EXCLUDED_FOLDERS = ['api'];
