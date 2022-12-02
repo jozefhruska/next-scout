@@ -44,7 +44,7 @@ describe('Utilities - Generators', () => {
             page: false,
             children: [
               {
-                name: '[slug]',
+                name: '[blog]',
                 type: RouteTreeNodeType.Dynamic,
                 page: true,
                 children: [],
@@ -99,8 +99,8 @@ describe('Utilities - Generators', () => {
     '    getPath: () => string;\n' +
     '  },\n' +
     '  projects: {\n' +
-    '    slug: {\n' +
-    '      getPath: (slug: string) => string;\n' +
+    '    blog: {\n' +
+    '      getPath: (blog: string) => string;\n' +
     '    },\n' +
     '  },\n' +
     '  forum: {\n' +
@@ -126,8 +126,8 @@ describe('Utilities - Generators', () => {
     '    getPath: () => `/contact-us`,\n' +
     '  },\n' +
     '  projects: {\n' +
-    '    slug: {\n' +
-    '      getPath: (slug) => `/projects/${slug}`,\n' +
+    '    blog: {\n' +
+    '      getPath: (blog) => `/projects/${blog}`,\n' +
     '    },\n' +
     '  },\n' +
     '  forum: {\n' +
