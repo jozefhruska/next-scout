@@ -9,7 +9,8 @@ import { parse, resolve } from 'node:path';
 import {
   DEFAULT_APP_FOLDER_PATH,
   DEFAULT_PAGES_FOLDER_PATH,
-  EXCLUDED_FILES,
+  EXCLUDED_FILES_ANYWHERE,
+  EXCLUDED_FILES_PAGES_ROOT,
   EXCLUDED_FOLDERS,
   INDEX_FILE_NAME_REGEX,
 } from '../constants';
@@ -90,7 +91,11 @@ export const buildRouteTree = (
     ) {
       const fileBaseName = parse(resolve(path, dirent.name)).name;
 
-      if (isAuxNode && EXCLUDED_FILES.includes(fileBaseName)) {
+      if (isAuxNode && EXCLUDED_FILES_PAGES_ROOT.includes(fileBaseName)) {
+        continue;
+      }
+
+      if (EXCLUDED_FILES_ANYWHERE.includes(fileBaseName)) {
         continue;
       }
 
