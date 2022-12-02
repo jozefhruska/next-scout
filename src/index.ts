@@ -65,6 +65,7 @@ try {
           )
         );
         console.error(error);
+        process.exit(2);
       } else {
         console.log(
           chalk.bgGreen.whiteBright(' SUCCESS '),
@@ -84,4 +85,5 @@ try {
     )
   );
   console.error(error);
+  process.exit(1);
 }
