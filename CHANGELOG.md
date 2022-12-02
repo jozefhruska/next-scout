@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/jozefhruska/next-scout/compare/v1.1.2...v1.1.3) (2022-12-02)
+
+
+### Bug Fixes
+
+* exit with error codes ([#12](https://github.com/jozefhruska/next-scout/issues/12)) ([9d97e02](https://github.com/jozefhruska/next-scout/commit/9d97e0216f21db35f197d01ab55a0f6a40a1d818))
+
 ## [1.1.2](https://github.com/jozefhruska/next-scout/compare/v1.1.1...v1.1.2) (2022-11-26)
 
 
