@@ -1,6 +1,8 @@
 #! /bin/bash
 
-for i in $(seq 1 5); do
-  cd "./$i/" || exit 1
+tests_dir=$(dirname -- "$0")
+
+for i in $(seq 1 3); do
+  cd "$tests_dir/$i/" || exit 1
   bash ./run.sh
 done
