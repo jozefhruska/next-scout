@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/jozefhruska/next-scout/compare/v1.1.3...v1.1.4) (2022-12-02)
+
+
+### Bug Fixes
+
+* exclude _error and _middleware files ([#17](https://github.com/jozefhruska/next-scout/issues/17)) ([998d53c](https://github.com/jozefhruska/next-scout/commit/998d53c848fef1b69b458844b018d1957b55bff6))
+
 ## [1.1.3](https://github.com/jozefhruska/next-scout/compare/v1.1.2...v1.1.3) (2022-12-02)
 
 
