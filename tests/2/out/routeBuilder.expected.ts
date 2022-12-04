@@ -15,6 +15,11 @@ export type RouteBuilder = {
       getPath: (slug: string) => string;
     },
   },
+  test: {
+    rest: {
+      getPath: (rest: string[]) => string;
+    },
+  },
 };
 
 export const routeBuilder: RouteBuilder = {
@@ -32,6 +37,11 @@ export const routeBuilder: RouteBuilder = {
   services: {
     slug: {
       getPath: (slug) => `/services/${slug}`,
+    },
+  },
+  test: {
+    rest: {
+      getPath: (rest) => `/test/${rest.join('/')}`,
     },
   },
 };

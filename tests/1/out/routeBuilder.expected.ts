@@ -16,6 +16,11 @@ export type RouteBuilder = {
         getPath: () => string;
       },
     },
+    uploads: {
+      rest: {
+        getPath: (rest: string[]) => string;
+      },
+    },
   },
 };
 
@@ -35,6 +40,11 @@ export const routeBuilder: RouteBuilder = {
       },
       profile: {
         getPath: () => `/dashboard/settings/profile`,
+      },
+    },
+    uploads: {
+      rest: {
+        getPath: (rest) => `/dashboard/uploads/${rest.join('/')}`,
       },
     },
   },
