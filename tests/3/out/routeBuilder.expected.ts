@@ -16,6 +16,11 @@ export type RouteBuilder = {
         getPath: () => string;
       },
     },
+    uploads: {
+      rest: {
+        getPath: (rest: string[]) => string;
+      },
+    },
   },
   getPath: () => string;
   contactUs: {
@@ -31,6 +36,11 @@ export type RouteBuilder = {
   services: {
     slug: {
       getPath: (slug: string) => string;
+    },
+  },
+  test: {
+    rest: {
+      getPath: (rest: string[]) => string;
     },
   },
 };
@@ -53,6 +63,11 @@ export const routeBuilder: RouteBuilder = {
         getPath: () => `/dashboard/settings/profile`,
       },
     },
+    uploads: {
+      rest: {
+        getPath: (rest) => `/dashboard/uploads/${rest.join('/')}`,
+      },
+    },
   },
   getPath: () => `/`,
   contactUs: {
@@ -68,6 +83,11 @@ export const routeBuilder: RouteBuilder = {
   services: {
     slug: {
       getPath: (slug) => `/services/${slug}`,
+    },
+  },
+  test: {
+    rest: {
+      getPath: (rest) => `/test/${rest.join('/')}`,
     },
   },
 };

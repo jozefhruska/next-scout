@@ -67,7 +67,7 @@ export const buildRouteTree = (
     );
   }
 
-  const baseName = parse(path).name;
+  const baseName = parse(path).base;
 
   // Check if the current folder is an auxiliary (helper)
   // Used to check for excluded files/folders (i.e. _document.*)
