@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/jozefhruska/next-scout/compare/v1.1.4...v1.1.5) (2022-12-04)
+
+
+### Bug Fixes
+
+* catch-all directory base name ([#19](https://github.com/jozefhruska/next-scout/issues/19)) ([9949ffe](https://github.com/jozefhruska/next-scout/commit/9949ffe07c658f4c34ed5b192c776b918cb63b52))
+
 ## [1.1.4](https://github.com/jozefhruska/next-scout/compare/v1.1.3...v1.1.4) (2022-12-02)
 
 
