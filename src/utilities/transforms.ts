@@ -39,20 +39,38 @@ export const getKeyName = (nodeName: string): string => {
     );
 };
 
-export const getPagePath = (base: string, node: RouteTreeNode): string => {
+/**
+ * Generates full paths for page nodes including param transformations
+ * if necessary.
+ *
+ * @param base Base path (prefix)
+ * @param node Current node
+ * @param trailingSlash Trailing slash setting
+ */
+export const getPagePath = (
+  base: string,
+  node: RouteTreeNode,
+  trailingSlash = false
+): string => {
   if (node.name === 'app' || node.name === 'pages') {
     return '/';
   }
 
+  const suffix = trailingSlash ? '/' : '';
+
   if (isDynamicRoute(node)) {
     if (isCatchAllRoute(node)) {
-      return base + `/\${${sanitizeNodeName(node.name)}.join('/')}`;
+      return (
+        base + `/\${${sanitizeNodeName(node.name)}.join('/')}${suffix}`
+      );
     } else {
-      return base + `/\${${sanitizeNodeName(node.name)}}`;
+      return base + `/\${${sanitizeNodeName(node.name)}}${suffix}`;
     }
   }
 
-  return (base === '/' ? '' : base) + `/${sanitizeNodeName(node.name)}`;
+  return (
+    (base === '/' ? '' : base) + `/${sanitizeNodeName(node.name)}${suffix}`
+  );
 };
 
 export const updateBase = (base: string, node: RouteTreeNode): string => {

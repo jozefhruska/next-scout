@@ -111,12 +111,13 @@ const generateRouteBuilderTypeBody = (
 };
 
 export const generateRouteBuilder = (
-  directoryTree: RouteTreeNode
+  directoryTree: RouteTreeNode,
+  trailingSlash: boolean
 ): string => {
   let acc = '';
 
   acc += 'export const routeBuilder: RouteBuilder = {\n';
-  acc += generateRouteBuilderBody(directoryTree);
+  acc += generateRouteBuilderBody(directoryTree, trailingSlash);
   acc += '};\n';
 
   return acc;
@@ -124,6 +125,7 @@ export const generateRouteBuilder = (
 
 const generateRouteBuilderBody = (
   node: RouteTreeNode,
+  trailingSlash: boolean,
   params: Record<string, ParamType> = {},
   base = '/',
   depth = 1
@@ -144,7 +146,9 @@ const generateRouteBuilderBody = (
     }
 
     acc += node.children.reduce(
-      (p, c) => p + generateRouteBuilderBody(c, params, base, depth),
+      (p, c) =>
+        p +
+        generateRouteBuilderBody(c, trailingSlash, params, base, depth),
       ''
     );
   } else {
@@ -158,7 +162,7 @@ const generateRouteBuilderBody = (
         `getPath: (${generateParams(
           updatedParams,
           false
-        )}) => \`${getPagePath(base, node)}\`,\n`;
+        )}) => \`${getPagePath(base, node, trailingSlash)}\`,\n`;
     }
 
     if (node.children.length) {
@@ -167,6 +171,7 @@ const generateRouteBuilderBody = (
           p +
           generateRouteBuilderBody(
             c,
+            trailingSlash,
             updatedParams,
             updateBase(base, node),
             depth + 1
