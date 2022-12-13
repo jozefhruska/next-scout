@@ -24,10 +24,13 @@ import { buildRouteTree } from './utilities/search';
 const argv = parser(process.argv.slice(2), {
   alias: {
     output: ['o'],
+    'trailing-slash': ['t'],
   },
   string: ['output'],
+  boolean: ['trailing-slash'],
   default: {
     output: './routeBuilder.ts',
+    'trailing-slash': false,
   },
 });
 
@@ -49,7 +52,7 @@ try {
   };
 
   const routeBuilderType = generateRouteBuilderType(routeTree);
-  const routeBuilder = generateRouteBuilder(routeTree);
+  const routeBuilder = generateRouteBuilder(routeTree, argv.trailingSlash);
 
   writeFile(
     argv.output,
