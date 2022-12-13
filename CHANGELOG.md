@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/jozefhruska/next-scout/compare/v1.1.5...v1.2.0) (2022-12-13)
+
+
+### Features
+
+* trailing slash support ([92ec870](https://github.com/jozefhruska/next-scout/commit/92ec870e41ba2b5e9d64e9b92707893483e9b81f))
+
 ## [1.1.5](https://github.com/jozefhruska/next-scout/compare/v1.1.4...v1.1.5) (2022-12-04)
 
 
