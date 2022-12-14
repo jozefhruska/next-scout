@@ -69,9 +69,16 @@ yarn add next-scout
 > `next-scout` has to be run in the **root directory** of your Next.js application (the folder that contains `pages` and/or `app` directories).
 
 ```bash
+# to generate the route builder with default settings
 next-scout
-# or
+
+# or to specify the output file
 next-scout --output ./lib/routeBuilder.ts
+
+# or to include trailing slash in generated paths
+next-scout --output ./lib/routeBuilder.ts --trailing-slash
 ```
 
-The `--output` specifies the file to which the `next-auth` will generate the route builder.
+### Arguments
+* The `--output` specifies the file to which the `next-scout` will generate the route builder.
+* The `--trailing-slash` flag enables the setting to include a trailing slash in generated paths.
